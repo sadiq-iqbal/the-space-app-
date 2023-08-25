@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expandable Navbar</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <header class="primary-header">
+        <div class="logo">
+            <img src="star.png" alt="logo" width="60">
+        </div>
+        <button id="btn" class="btn" aria-controls="navitems" data-visible="true">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav>
+            <ul class="navitems" aria-expanded="false" id="nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="hero">
+        <div class="card">
+            <h1 id="heading">
+                Discover The Heavens With Us 
+            </h1>
+            <p>
+                "Welcome to the Cosmos Explorer – Your Celestial Journey Begins Here! Embark on a captivating adventure through the universe, from distant galaxies to our own solar system. Join us in exploring the wonders of space, from awe-inspiring celestial events to cutting-edge space missions. Feed your curiosity and expand your horizons with our engaging articles and resources. Get ready to discover the cosmos like never before – welcome to our space website!"
+            </p>
+        </div>
+        
+    </main>
+    <h2 class="section">Discover With Us !</h2>
+    <div class="box">
+        <div class="item item1 hidden">
+            <img class="cardImage" src="images/astronaut.jpg" alt="">
+            <div class="overlay">
+                <h3 class="heading">Astronaut</h3>
+                <p class="details">Venturing into the cosmos, astronauts brave the unknown to unlock the secrets of the universe and inspire generations with their courage and determination.</p>
+            </div>
+        </div>
+        
+        <div class="item item2 hidden">
+            <img class="cardImage" src="images/canyon.jpg" alt="">
+            <div class="overlay">
+                <h3 class="heading">Canyon</h3>
+                <p class="details">Carved over eons, majestic canyons stand as testaments to the raw power of nature, offering breathtaking vistas that remind us of Earth's ancient history.</p>
+            </div>
+        </div>
+        
+        <div class="item item3 hidden">
+            <img class="cardImage" src="images/lifecycle.jpg" alt="">
+            <div class="overlay">
+                <h3 class="heading">Lifecycle</h3>
+                <p class="details">Nature's continuous journey unfolds with the cycles of life, from the smallest microorganisms to the grandeur of ecosystems, illustrating the interconnectedness of all living things.</p>
+            </div>
+        </div>
+        
+        <div class="item item4 hidden">
+            <img class="cardImage" src="images/sun.jpg" alt="">
+            <div class="overlay">
+                <h3 class="heading">Sun</h3>
+                <p class="details">At the heart of our solar system, the sun radiates light and energy, shaping the conditions necessary for life on Earth and driving the complex dynamics of our celestial neighborhood.</p>
+            </div>
+        </div>
+        
+        <div class="item item5 hidden">
+            <img class="cardImage" src="images/rover.jpg" alt="">
+            <div class="overlay">
+                <h3 class="heading">Rover</h3>
+                <p class="details">Robotic rovers journey across distant landscapes, conducting scientific exploration on alien worlds, expanding our understanding of the cosmos, and paving the way for human exploration.</p>
+            </div>
+        </div>
+        
+        <div class="item item6 hidden">
+            <img class="cardImage" src="images/mars.jpg" alt="">
+            <div class="overlay">
+                <h3 class="heading">Mars</h3>
+                <p class="details">The red planet, Mars, beckons as a potential future home for humanity, with its mysteries and challenges spurring scientific investigation and igniting dreams of interplanetary habitation.</p>
+            </div>
+        </div>
+    </div>
+
+        
+    </div>
+    <footer class="footer">
+        <div class="social"><i class="fa fa-facebook"></i></div>
+        <div class="social"><i class="fa fa-twitter"></i></div>
+        <div class="social"><i class="fas fa-message"></i></div>
+        <div class="social"><i class="fa fa-instagram"></i></div>
+        <div class="social"><i class="fa fa-share"></i></div>
+        <div class="social"><i class="fa fa-home"></i></div>
+        <!-- <div class="logo">
+            <div class=" card2 nasa">
+                <a href=""><img src="images/logos/nasa.png" width="50px"></a>
+            </div>
+            <div class="card2 spacex">
+                <a href=""><img src="images/logos/spacex.png" width="70px" alt=""></a>
+            </div>
+            <div class="card2 isro">
+                <a href=""><img src="images/logos/isro.png" width="50px" alt=""></a>
+            </div>
+        </div>
+        <div class="socials">
+            <a href=""></a>
+            <a href=""></a>
+            <a href=""></a>
+            <a href=""></a>
+            <a href=""></a>
+        </div> -->
+        
+    </footer>
+    <script src="https://kit.fontawesome.com/9270208967.js" crossorigin="anonymous"></script>
+    <script>
+        let button = document.getElementById('btn')
+        let navbar = document.getElementById('nav')
+        button.addEventListener('click',()=>{
+            let expanded = navbar.getAttribute('aria-expanded')
+            if(expanded==="true"){
+                expanded ="false"
+                navbar.setAttribute('aria-expanded',expanded)
+                button.innerHTML='<i class="fas fa-bars"></i>' 
+            }
+            else if(expanded==="false"){
+                expanded ="true"
+                navbar.setAttribute('aria-expanded',expanded)
+                console.log(button.innerHTML)
+                button.innerHTML='<i class="fas fa-times"></i>'
+            }
+        })
+        let heading = document.getElementById('heading')
+        let addLoad = ()=>{
+            heading.classList.add('load')
+            console.log(heading)
+        }
+        window.onload = addLoad
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>/////
+        const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = 1; // Make the element visible
+        } else {
+            entry.target.style.opacity = 0; // Hide the element
+        }
+    });
+});
+
+const hiddenElements = document.querySelectorAll('.hidden');
+hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
